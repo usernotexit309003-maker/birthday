@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 🎂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Caveat:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="phone">
+
+  <!-- SCREEN 1: Gift -->
+  <section class="screen active" id="s1">
+    <div class="card">
+      <h1 class="title">PLS ACCEPT THE GIFT</h1>
+      <div class="char penguin"><img src="images/penguin.png" alt="penguin" class="penguin-img"><div class="gift">🎁</div></div>
+      <div class="btn-row">
+        <button class="btn yes" id="yesBtn">YES</button>
+        <button class="btn no" id="noBtn">NO</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 2: Why did you click no -->
+  <section class="screen" id="s2">
+    <div class="card">
+      <h1 class="title">WHY DID YOU CLICK NO!</h1>
+      <div class="char penguin sad"><img src="images/penguin.png" alt="penguin" class="penguin-img"><div class="tear"></div><div class="tear t2"></div></div>
+      <button class="btn tryagain" id="tryAgainBtn">TRY AGAIN</button>
+    </div>
+  </section>
+
+  <!-- SCREEN 3: Choose a penguin -->
+  <section class="screen" id="s3">
+    <div class="card">
+      <h1 class="title small">Choose a penguin</h1>
+      <p class="subtitle">Each one has something special to say</p>
+      <div class="penguin-row">
+        <div class="char penguin mini pick"><img src="images/penguin.png" alt="penguin" class="penguin-img"><div class="gift">🎁</div></div>
+        <div class="char penguin mini pick"><img src="images/penguin.png" alt="penguin" class="penguin-img"><div class="gift">🎁</div></div>
+        <div class="char penguin mini pick"><img src="images/penguin.png" alt="penguin" class="penguin-img"><div class="gift">🎁</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 4: Virtual hug (bear + penguin + ghost) -->
+  <section class="screen" id="s4">
+    <div class="card">
+      <h1 class="title small">Sending you a hug!</h1>
+      <div class="hug-row">
+        <div class="char bear walk"><div class="ear l"></div><div class="ear r"></div><div class="face"><div class="eye l"></div><div class="eye r"></div></div></div>
+        <div class="char penguin walk3"><img src="images/penguin.png" alt="penguin" class="penguin-img"></div>
+        <div class="char ghost walk2"><div class="face"><div class="eye l"></div><div class="eye r"></div></div></div>
+      </div>
+      <h2 class="miss">HUGS FOR YOU!</h2>
+      <button class="heart-nav" data-next="s5">❤<span>CLICK ME</span></button>
+    </div>
+  </section>
+
+  <!-- SCREEN 5: Happy Birthday -->
+  <section class="screen" id="s5">
+    <div class="card">
+      <canvas id="confetti"></canvas>
+      <h1 class="title happy">HAPPY BIRTHDAY</h1>
+      <div class="bday-scene">
+        <div class="duck">🐤</div>
+        <div class="cake-wrap">
+          <div class="wish-tag">MAKE A WISH</div>
+          <div class="cake">🎂</div>
+        </div>
+        <div class="gifts">🎁🎁🎁</div>
+      </div>
+      <button class="heart-nav" data-next="s6">❤<span>CLICK ME</span></button>
+    </div>
+  </section>
+
+  <!-- SCREEN 6: Simple wishes (no photos, no romantic text) -->
+  <section class="screen" id="s6">
+    <div class="card scrapbook">
+      <div class="sticker camera">🌟</div>
+      <h2 class="script-title">Wishing You</h2>
+      <div class="char penguin small-card"><img src="images/penguin.png" alt="penguin" class="penguin-img"><div class="gift">🎁</div></div>
+      <p class="wishes-para">
+        Just wanted to say happy birthday. I have no hate for you at all — genuinely,
+        you're such a good person, and I hope you never stop believing that about yourself.
+        Here's to you growing into everything you're working towards, and still finding
+        time to just enjoy life along the way. This is a very, very small gift, but it
+        comes with all the good vibes I've got for you. 🌤
+      </p>
+      <div class="sticker bunny">🐰</div>
+      <button class="heart-nav" data-next="s7">❤<span>CLICK ME</span></button>
+    </div>
+  </section>
+
+  <!-- SCREEN 7: Final handwriting card -->
+  <section class="screen" id="s7">
+    <div class="card ticket">
+      <svg viewBox="0 0 440 160" class="handwrite">
+        <text x="14" y="100" class="hw-text">STAY AWESOME</text>
+      </svg>
+    </div>
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
