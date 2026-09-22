@@ -115,6 +115,95 @@ body {
 .btn.tryagain { margin-top: 6px; }
 
 .penguin-row { display: flex; gap: 22px; justify-content: center; }
+.pick-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.pick-label { font-family: 'Baloo 2', sans-serif; font-size: 12px; color: #a5341f; font-weight: 700; }
+
+/* ---------- Penguin word-game screen ---------- */
+.game-penguin { width: 64px; height: 72px; margin: 0 auto 6px; }
+.hint-box {
+  width: 100%;
+  background: #fff;
+  border: 2px dashed #e2543a;
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+.hint-line { font-size: 13px; color: #4a3a37; min-height: 34px; margin-bottom: 8px; line-height: 1.4; }
+.btn.hint-btn {
+  font-size: 12px;
+  padding: 7px 16px;
+  background: linear-gradient(180deg, #6ec6ca, #4aa3a8);
+  box-shadow: 0 3px 0 #357c80;
+}
+.btn.hint-btn:disabled { opacity: .5; cursor: default; }
+
+.guess-input {
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  text-align: center;
+  padding: 10px 14px;
+  border-radius: 30px;
+  border: 2px solid #e2543a;
+  outline: none;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+.guess-input.shake { animation: shake .4s; }
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+}
+
+.btn.check-btn { margin-top: 2px; }
+
+.wrong-msg {
+  margin-top: 10px;
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 13px;
+  color: #c9432f;
+  opacity: 0;
+  transition: opacity .2s;
+}
+.wrong-msg.show { opacity: 1; }
+
+/* ---------- Compliment popup modal ---------- */
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 20, 20, .55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s;
+  z-index: 50;
+}
+.modal-overlay.show { opacity: 1; pointer-events: auto; }
+.modal-card {
+  width: 84%;
+  max-width: 320px;
+  background: linear-gradient(135deg, #fff8f5, #ffe9e0);
+  border-radius: 20px;
+  padding: 28px 22px;
+  text-align: center;
+  transform: scale(.9);
+  transition: transform .25s;
+  box-shadow: 0 10px 40px rgba(0,0,0,.35);
+}
+.modal-overlay.show .modal-card { transform: scale(1); }
+.modal-emoji { font-size: 40px; margin-bottom: 10px; }
+.modal-text {
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 15px;
+  color: #2b2b2b;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
 
 .heart-nav {
   position: absolute;

@@ -45,9 +45,111 @@ document.getElementById('tryAgainBtn').addEventListener('click', () => {
   showScreen('s1');
 });
 
-// --- Screen 3: choose a penguin (any choice -> hug screen) ---
+// --- Screen 3: choose a penguin -> each one leads to its own mini word-game ---
+const penguinPaths = [
+  {
+    // 0: Cool Penguin
+    title: '😎 Cool Penguin says...',
+    intro: "Solve this and I'll let you pass. Maybe.",
+    answer: 'AWESOME',
+    hints: [
+      "It's how your friends would describe you in one word.",
+      "Starts with the letter A.",
+      "Rhymes with \"gruesome\", but way more fun.",
+      "It's basically your permanent personality setting."
+    ],
+    emoji: '🎉',
+    compliment: "Correct! You really are AWESOME — certified by the Cool Penguin himself, and he doesn't certify just anyone."
+  },
+  {
+    // 1: Chaos Penguin
+    title: '🤪 Chaos Penguin demands...',
+    intro: 'One word. No pressure. (Full pressure.)',
+    answer: 'LEGEND',
+    hints: [
+      'Bollywood movies wish their plot twists were this good.',
+      "6 letters, starts with L.",
+      "Rhymes with nothing, because you're one of a kind.",
+      "What people call you when you're not in the room. In a good way."
+    ],
+    emoji: '🔥',
+    compliment: "Correct! Officially declared a LEGEND by the Chaos Penguin Council. There was chaos. There was a council. You won."
+  },
+  {
+    // 2: Soft Penguin
+    title: '🥹 Soft Penguin whispers...',
+    intro: 'A gentle little riddle, just for you.',
+    answer: 'AMAZING',
+    hints: [
+      'What your smile does to a room.',
+      '7 letters, starts with A.',
+      "Synonyms include incredible, wonderful, stunning — pick one, it's still true.",
+      "It's simply... you."
+    ],
+    emoji: '🥹',
+    compliment: "Correct! Confirmed: you are AMAZING, no cap, no notes."
+  }
+];
+
+let currentPenguin = null;
+let hintsShown = 0;
+
+const gameTitle = document.getElementById('gameTitle');
+const gameIntro = document.getElementById('gameIntro');
+const hintLine = document.getElementById('hintLine');
+const hintBtn = document.getElementById('hintBtn');
+const guessInput = document.getElementById('guessInput');
+const checkBtn = document.getElementById('checkBtn');
+const wrongMsg = document.getElementById('wrongMsg');
+const modal = document.getElementById('complimentModal');
+const modalEmoji = document.getElementById('modalEmoji');
+const modalText = document.getElementById('modalText');
+const modalContinueBtn = document.getElementById('modalContinueBtn');
+
 document.querySelectorAll('#s3 .pick').forEach(p => {
-  p.addEventListener('click', () => showScreen('s4'));
+  p.addEventListener('click', () => {
+    currentPenguin = penguinPaths[parseInt(p.dataset.index, 10)];
+    hintsShown = 0;
+    gameTitle.textContent = currentPenguin.title;
+    gameIntro.textContent = currentPenguin.intro;
+    hintLine.textContent = 'Hint 1 will appear here once you ask.';
+    hintBtn.textContent = 'Show a hint (0/4)';
+    hintBtn.disabled = false;
+    guessInput.value = '';
+    wrongMsg.classList.remove('show');
+    showScreen('s3game');
+  });
+});
+
+hintBtn.addEventListener('click', () => {
+  if (!currentPenguin || hintsShown >= 4) return;
+  hintLine.textContent = currentPenguin.hints[hintsShown];
+  hintsShown++;
+  hintBtn.textContent = `Show a hint (${hintsShown}/4)`;
+  if (hintsShown >= 4) hintBtn.disabled = true;
+});
+
+function checkAnswer() {
+  if (!currentPenguin) return;
+  const guess = guessInput.value.trim().toUpperCase();
+  if (guess === currentPenguin.answer) {
+    wrongMsg.classList.remove('show');
+    modalEmoji.textContent = currentPenguin.emoji;
+    modalText.textContent = currentPenguin.compliment;
+    modal.classList.add('show');
+  } else {
+    wrongMsg.classList.add('show');
+    guessInput.classList.remove('shake');
+    void guessInput.offsetWidth; // restart animation
+    guessInput.classList.add('shake');
+  }
+}
+checkBtn.addEventListener('click', checkAnswer);
+guessInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkAnswer(); });
+
+modalContinueBtn.addEventListener('click', () => {
+  modal.classList.remove('show');
+  showScreen('s4');
 });
 
 // --- Heart nav buttons (screens 4-8) ---

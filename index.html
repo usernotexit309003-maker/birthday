@@ -37,14 +37,50 @@
   <section class="screen" id="s3">
     <div class="card">
       <h1 class="title small">Choose a penguin</h1>
-      <p class="subtitle">Each one has something special to say</p>
+      <p class="subtitle">Each one has a very different vibe. Choose wisely.</p>
       <div class="penguin-row">
-        <div class="char penguin mini pick"><img src="images/penguin.png" alt="penguin" class="penguin-img"><div class="gift">🎁</div></div>
-        <div class="char penguin mini pick"><img src="images/penguin.png" alt="penguin" class="penguin-img"><div class="gift">🎁</div></div>
-        <div class="char penguin mini pick"><img src="images/penguin.png" alt="penguin" class="penguin-img"><div class="gift">🎁</div></div>
+        <div class="pick-wrap">
+          <div class="char penguin mini pick" data-index="0"><img src="images/penguin.png" alt="penguin" class="penguin-img"><div class="gift">🎁</div></div>
+          <span class="pick-label">😎 Cool</span>
+        </div>
+        <div class="pick-wrap">
+          <div class="char penguin mini pick" data-index="1"><img src="images/penguin.png" alt="penguin" class="penguin-img"><div class="gift">🎁</div></div>
+          <span class="pick-label">🤪 Chaos</span>
+        </div>
+        <div class="pick-wrap">
+          <div class="char penguin mini pick" data-index="2"><img src="images/penguin.png" alt="penguin" class="penguin-img"><div class="gift">🎁</div></div>
+          <span class="pick-label">🥹 Soft</span>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- SCREEN 3.5: Penguin's word game (content changes based on chosen penguin) -->
+  <section class="screen" id="s3game">
+    <div class="card">
+      <div class="char penguin mini game-penguin"><img src="images/penguin.png" alt="penguin" class="penguin-img"></div>
+      <h1 class="title small" id="gameTitle">Penguin Challenge</h1>
+      <p class="subtitle" id="gameIntro">Solve this or no cake for you.</p>
+
+      <div class="hint-box">
+        <div class="hint-line" id="hintLine">Hint 1 will appear here once you ask.</div>
+        <button class="btn hint-btn" id="hintBtn">Show a hint (0/4)</button>
+      </div>
+
+      <input type="text" id="guessInput" class="guess-input" placeholder="Type your answer..." autocomplete="off">
+      <button class="btn check-btn" id="checkBtn">CHECK</button>
+      <div class="wrong-msg" id="wrongMsg">Nope, try again! 🐧</div>
+    </div>
+  </section>
+
+  <!-- POPUP: compliment modal -->
+  <div class="modal-overlay" id="complimentModal">
+    <div class="modal-card">
+      <div class="modal-emoji" id="modalEmoji">🎉</div>
+      <p class="modal-text" id="modalText">Correct!</p>
+      <button class="btn modal-continue" id="modalContinueBtn">CONTINUE</button>
+    </div>
+  </div>
 
   <!-- SCREEN 4: Virtual hug (bear + penguin + ghost) -->
   <section class="screen" id="s4">
@@ -84,8 +120,8 @@
       <h2 class="script-title">Wishing You</h2>
       <div class="char penguin small-card"><img src="images/penguin.png" alt="penguin" class="penguin-img"><div class="gift">🎁</div></div>
       <p class="wishes-para">
-        Just wanted to say happy birthday. I have no hate for you at all — genuinely,
-        you're such a good person, and I hope you never stop believing that about yourself.
+        Just wanted to say happy birthday. Genuinely, you're such a good person,
+        and I hope you never stop believing that about yourself.
         Here's to you growing into everything you're working towards, and still finding
         time to just enjoy life along the way. This is a very, very small gift, but it
         comes with all the good vibes I've got for you. 🌤
