@@ -2,7 +2,8 @@ const screens = document.querySelectorAll('.screen');
 function showScreen(id) {
   screens.forEach(s => s.classList.toggle('active', s.id === id));
   if (id === 's5') startConfetti();
-  if (id === 's7') setTimeout(() => showScreen('s1'), 6000); // loop back to start
+  if (id === 's7') setTimeout(() => showScreen('s8'), 5000); // let the handwriting finish, then show the final card
+  if (id === 's8') setTimeout(() => showScreen('s1'), 7000); // loop back to start
 }
 
 // --- Screen 1: gift ---
@@ -49,45 +50,45 @@ document.getElementById('tryAgainBtn').addEventListener('click', () => {
 const penguinPaths = [
   {
     // 0: Cool Penguin
-    title: '😎 Cool Penguin says...',
-    intro: "Solve this and I'll let you pass. Maybe.",
-    answer: 'AWESOME',
+    title: '😎 Cool Penguin asks...',
+    intro: 'What word am I? Something royal you deserve to wear today.',
+    answer: 'CROWN',
     hints: [
-      "It's how your friends would describe you in one word.",
-      "Starts with the letter A.",
-      "Rhymes with \"gruesome\", but way more fun.",
-      "It's basically your permanent personality setting."
+      "It's small, shiny, and sits on top of your head — only on your special day.",
+      '👑 (yes, that\'s basically the answer)',
+      '5 letters, starts with C.',
+      "It's CROWN — you're basically royalty today. 👑"
     ],
-    emoji: '🎉',
-    compliment: "Correct! You really are AWESOME — certified by the Cool Penguin himself, and he doesn't certify just anyone."
+    emoji: '👑',
+    compliment: "Correct! Crowning you Birthday Royalty 👑 — reign responsibly."
   },
   {
     // 1: Chaos Penguin
-    title: '🤪 Chaos Penguin demands...',
-    intro: 'One word. No pressure. (Full pressure.)',
-    answer: 'LEGEND',
+    title: '🤪 Chaos Penguin asks...',
+    intro: 'What word am I? What today officially is, whether you like it or not.',
+    answer: 'PARTY',
     hints: [
-      'Bollywood movies wish their plot twists were this good.',
-      "6 letters, starts with L.",
-      "Rhymes with nothing, because you're one of a kind.",
-      "What people call you when you're not in the room. In a good way."
+      'It involves cake, chaos, and zero rules.',
+      '🎉 (yes, that\'s basically the answer)',
+      '5 letters, starts with P.',
+      "It's PARTY — and you're the guest of honor. 🎉"
     ],
-    emoji: '🔥',
-    compliment: "Correct! Officially declared a LEGEND by the Chaos Penguin Council. There was chaos. There was a council. You won."
+    emoji: '🎉',
+    compliment: "Correct! The PARTY has officially started, and you're the main character."
   },
   {
     // 2: Soft Penguin
-    title: '🥹 Soft Penguin whispers...',
-    intro: 'A gentle little riddle, just for you.',
-    answer: 'AMAZING',
+    title: '🥹 Soft Penguin asks...',
+    intro: 'What word am I? What you fill with warmth every time you smile.',
+    answer: 'HEART',
     hints: [
-      'What your smile does to a room.',
-      '7 letters, starts with A.',
-      "Synonyms include incredible, wonderful, stunning — pick one, it's still true.",
-      "It's simply... you."
+      'It beats for the people you love — including yourself, today.',
+      '❤️ (yes, that\'s basically the answer)',
+      '5 letters, starts with H.',
+      "It's HEART — and yours is one of the good ones. ❤️"
     ],
     emoji: '🥹',
-    compliment: "Correct! Confirmed: you are AMAZING, no cap, no notes."
+    compliment: "Correct! Confirmed: you have the kindest HEART around."
   }
 ];
 
@@ -155,6 +156,32 @@ modalContinueBtn.addEventListener('click', () => {
 // --- Heart nav buttons (screens 4-8) ---
 document.querySelectorAll('.heart-nav').forEach(btn => {
   btn.addEventListener('click', () => showScreen(btn.dataset.next));
+});
+
+// --- Background music (starts on the first tap anywhere, since browsers block autoplay with sound) ---
+const bgMusic = document.getElementById('bgMusic');
+const muteBtn = document.getElementById('muteBtn');
+let musicStarted = false;
+
+function startMusic() {
+  if (musicStarted) return;
+  musicStarted = true;
+  bgMusic.volume = 0.35;
+  bgMusic.play().then(() => {
+    muteBtn.textContent = '🔊';
+  }).catch(() => {
+    musicStarted = false; // no audio file yet, or browser blocked it — stays muted
+  });
+}
+document.body.addEventListener('click', startMusic, { once: true });
+
+muteBtn.addEventListener('click', () => {
+  if (bgMusic.paused) {
+    bgMusic.play().then(() => { muteBtn.textContent = '🔊'; }).catch(() => {});
+  } else {
+    bgMusic.pause();
+    muteBtn.textContent = '🔇';
+  }
 });
 
 // --- Confetti (canvas, vanilla JS, no libraries) ---

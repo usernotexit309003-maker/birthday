@@ -38,7 +38,7 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #fff8f5, #ffe9e0);
+  background: linear-gradient(135deg, #fff0f5, #ffd9e8);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -187,7 +187,7 @@ body {
 .modal-card {
   width: 84%;
   max-width: 320px;
-  background: linear-gradient(135deg, #fff8f5, #ffe9e0);
+  background: linear-gradient(135deg, #fff0f5, #ffd9e8);
   border-radius: 20px;
   padding: 28px 22px;
   text-align: center;
@@ -277,3 +277,27 @@ body {
 @keyframes write { to { stroke-dashoffset: 0; } }
 @keyframes fill { to { fill: #e2543a; } }
 .handwrite { width: 100%; }
+
+/* ---------- Screen 8: final card image ---------- */
+.card.image-card { padding: 0; overflow: hidden; background: #cfe8ea; }
+.final-card-img { width: 100%; height: 100%; object-fit: contain; }
+
+/* ---------- Background music toggle ---------- */
+.mute-btn {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, .5);
+  color: #fff;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 200;
+  backdrop-filter: blur(2px);
+}
